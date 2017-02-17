@@ -10,6 +10,7 @@ lendig :: Integer
 lendig = toInteger (length digits)
 
 inner :: Natural -> Natural -> String -> String
+inner 0   _    ""  = "0"
 inner 0   _    acc = acc
 inner num base acc = inner (div num base) base ([(digits !! (fromIntegral (mod num base)))] ++ acc)
 

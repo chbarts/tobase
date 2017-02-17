@@ -38,7 +38,11 @@ dotobase base str = do
 getbase :: String -> IO Natural
 getbase str = do
   val <- trynat "base" str
-  if ((toInteger val) > lendig) then (hPutStrLn stderr ("tobase: base " ++ str ++ " too large") >> exitFailure) else return val
+  if ((toInteger val) <= 1) 
+    then (hPutStrLn stderr ("tobase: base " ++ str ++ " invalid") >> exitFailure) 
+    else if ((toInteger val) > lendig) 
+         then (hPutStrLn stderr ("tobase: base " ++ str ++ " too large") >> exitFailure) 
+         else return val
 
 parse :: [String] -> IO ()
 parse ["-h"]        = help
